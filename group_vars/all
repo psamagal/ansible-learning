@@ -1,3 +1,2 @@
-nsible_connection: ssh 
 ansible_ssh_user: devops 
 ansible_ssh_pass: devops
