@@ -1,5 +1,17 @@
-[local]
-192.168.1.240
+[minion01]
+192.168.1.241
 
+[minion02]
+192.168.1.242
+
+[minion03]
+192.168.1.250
+
+[jenkins:children]
+minion01
+
+[minions:children]
+minion02
+minion03
 
 

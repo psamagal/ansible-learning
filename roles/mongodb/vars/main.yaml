@@ -1,0 +1,11 @@
+---
+mongo_daemon: mongod
+mongo_conf_path: /etc/mongod.conf
+mongo_storage_dbpath: /var/lib/mongo
+
+
+app_base_folder: /export/local
+app_log_folder: /export/logs
+app_data_folder: /export/data
+app_name: mongodb
+app_user: mongodb

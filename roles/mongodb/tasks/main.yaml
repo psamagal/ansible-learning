@@ -1,0 +1,55 @@
+---
+#- name: Add MongoDB Repository
+#  yum_repository:
+#    name: MongoDBRepository
+#    description: MongoDB.org Repository
+#    baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.2/x86_64/
+#    gpgcheck: 1
+#    enabled: 1
+#    gpgkey: https://www.mongodb.org/static/pgp/server-3.2.asc
+#  become: true
+
+#- name: Install MongoDB via yum
+#  yum: name=mongodb-org state=latest
+#  become: true
+
+- name: Create Mongo group
+  group: name={{ app_user }} state=present
+  become: true
+
+- name: Create Mongo user
+  user: name={{ app_user }} group={{ app_user }} state=present
+  become: true
+
+- name: Create base folder
+  file: path="{{ app_base_folder }}/{{app_name}}-versions" state=directory owner={{ app_user }} group={{ app_user }}
+  become: true
+
+- name: Create {{ app_name }} data folder
+  file: path="{{ app_data_folder }}/{{app_name}}" state=directory owner={{ app_user }} group={{ app_user }}
+  become: true
+
+- name: Create {{ app_name }} log folder
+  file: path="{{ app_log_folder }}/{{app_name}}" state=directory owner={{ app_user }} group={{ app_user }}
+  become: true
+
+- name: Download Mongo source file
+  get_url:
+    url: http://fastdl.mongodb.org/src/mongodb-src-r3.2.10.tar.gz
+    dest: /tmp/
+
+- name: Unpack Mongodb source file
+  shell: "tar xvzf /tmp/mongodb-src-r3.2.10.tar.gz -C {{ app_base_folder }}/{{ app_name }}-versios"
+
+  
+- name: Ensure Mongo is configured.
+  template:
+    src: mongod.conf.j2
+    dest: "{{ mongo_conf_path }}"
+    mode: 0644
+  become: true
+  notify: restart mongo
+
+- name: Ensure mongo is running and enabled on boot.
+  service: "name={{ mongo_daemon }} state=started enabled=yes"
+  become: true

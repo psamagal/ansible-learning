@@ -1,4 +1,4 @@
 ---
-- hosts: local
+- hosts: minion01
   roles:
-    - role: java
+    - role: mongodb
