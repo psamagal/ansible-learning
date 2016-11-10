@@ -1,0 +1,4 @@
+---
+- hosts: minion01
+  roles:
+    - role: dummy

@@ -1,0 +1,7 @@
+---
+- hosts: "{{ group }}"
+  vars_files:
+    - "inventories/{{env}}/group_vars/{{group}}.yml"
+    - "inventories/{{env}}/group_vars/secrets.yml"
+  roles:
+    - role: dummy

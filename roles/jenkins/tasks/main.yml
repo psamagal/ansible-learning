@@ -22,7 +22,7 @@
   become: true
 
 - name: Install Jenkins for RedHat
-  yum: name=jenkins state=latest
+  yum: name=jenkins-1.611 state=latest
   register: jenkins_install
   when: ansible_os_family == "RedHat"
   become: true

@@ -1,0 +1,14 @@
+# Basic provisioning example
+
+---
+  vars:
+    ami_image: ami-0f80e87c
+  tasks:
+  - name: Tea
+    ec2:
+      instance_type: t2.micro
+      image: "{{ ami_image }}"
+      wait: yes
+      group: kubernetes
+      count: 3
+      assign_public_ip: yes

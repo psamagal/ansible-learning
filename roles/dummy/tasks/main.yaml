@@ -1,0 +1,9 @@
+---
+- name: test
+  debug: msg="{{ env }}"
+
+- name: test
+  debug: msg="{{ test }}"
+
+- name: test secret
+  debug: msg="{{ secret }}"
