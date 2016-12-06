@@ -38,3 +38,15 @@
   shell: chkconfig jenkins on
   when: ansible_os_family == "RedHat"
   become: true
+
+- name: Message
+  command: echo XXX
+#- name: Install plugin
+#  jenkins_plugin:
+#    name: "build-pipeline-plugin"
+#  become: true
+
+#- name: Enable the plugin
+#  jenkins_plugin:
+#    name: token-macro
+#    state: enabled

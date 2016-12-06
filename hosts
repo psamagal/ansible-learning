@@ -8,7 +8,7 @@
 192.168.1.250
 
 [jenkins]
-192.168.1.190
+192.168.1.191
 
 [minions:children]
 minion02
